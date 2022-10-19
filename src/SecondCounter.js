@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { CountContext } from './App';
+import CountContextProvider from './context/CountContext';
 
 function SecondCounter() {
-	const { count } = useContext(CountContext);
+	const { count } = useContext(CountContextProvider);
 	return (
 		<div>
 			<h1>

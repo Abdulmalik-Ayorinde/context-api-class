@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CountContext } from './context/CountContext';
 
-function ChildTwo({ count, setCount }) {
+function ChildTwo() {
+	const { count, setCount } = useContext(CountContext);
 	function increment() {
 		setCount((initalValue) => initalValue + 1);
 	}

@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState } from 'react';
 
 import Counter from './Counter';
 
@@ -10,12 +10,9 @@ import {
 	Routes,
 } from 'react-router-dom';
 import SecondCounter from './SecondCounter';
-
-export const CountContext = createContext();
+import CountContextProvider from './context/CountContext';
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	const router = createBrowserRouter([
 		{
 			path: '/',
@@ -27,8 +24,8 @@ function App() {
 		},
 	]);
 	return (
-		<div>
-			<CountContext.Provider value={{ count, setCount }}>
+		<>
+			<CountContextProvider>
 				{/* <RouterProvider router={router} /> */}
 				<BrowserRouter>
 					<Routes>
@@ -36,8 +33,8 @@ function App() {
 						<Route element={<SecondCounter />} path='/second-counter' />
 					</Routes>
 				</BrowserRouter>
-			</CountContext.Provider>
-		</div>
+			</CountContextProvider>
+		</>
 	);
 }
 

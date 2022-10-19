@@ -1,21 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { CountContext } from './App';
 import ChildOne from './ChildOne';
 import ChildTwo from './ChildTwo';
+import { CountContext } from './context/CountContext';
 
 function Counter() {
-	const { count, setCount } = useContext(CountContext);
+	const [state, dispatch] = useContext(CountContext);
 	return (
 		<div>
 			<h1>Hello from counter</h1>
-			<h2>Count from parent is: {count}</h2>
+			<h2>Count from parent is: {state.count}</h2>
 			<ChildOne />
 			<ChildTwo />
-			<button onClick={() => setCount((prevState) => prevState + 1)}>
+			<button onClick={() => dispatch({ type: 'INCREMENT' })}>
 				NewIncrement
 			</button>{' '}
-			<button onClick={() => setCount((prevState) => prevState - 1)}>
+			<button onClick={() => dispatch({ type: 'DECREMENT' })}>
 				NewDecrement
 			</button>
 			<Link to='/second-counter'>Go to second Counter</Link>
